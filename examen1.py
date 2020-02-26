@@ -37,7 +37,6 @@ def calificar():
         checkbutton5.isSelected(),
     ]
     respuestas5_len = len([i for i in respuestas5 if i is True])
-    print(respuestas5_len)
     aciertos = [
         respuesta1 == PREGUNTAS[1][1],
         respuesta2 == PREGUNTAS[2][1],
@@ -138,6 +137,3 @@ calificar = ttk.Button(frame4, text="Calificar", command=calificar)
 calificar.grid()
 
 root.mainloop()
-
-
-main()
