@@ -6,7 +6,7 @@ PREGUNTAS = {
     2: ("Por quien esta nombrado el continente americano?", "Americo Vespucio"),
     3: ("Quien fue el primer presidente estadounidense?", "George Washington"),
     4: ("En que año cayo constantinopla (B.C)", "457"),
-    5: ("Elige al menos 1 presidente mexicanos", ("Benito Juarez", "Porfirio Diaz")),
+    5: ("Elige al menos 1 presidente mexicano", ("Benito Juarez", "Porfirio Diaz")),
 }
 
 PADY = (0, 10)
@@ -24,6 +24,7 @@ class Checkbutton(ttk.Checkbutton):
 
 
 def calificar():
+    calificacion = 0
     respuesta1 = entry_pregunta1.get()
     respuesta2 = entry_pregunta2.get()
     respuesta3 = radio_var.get()
@@ -35,7 +36,26 @@ def calificar():
         checkbutton4.isSelected(),
         checkbutton5.isSelected(),
     ]
-    print(respuestas5)
+    respuestas5_len = len([i for i in respuestas5 if i is True])
+    print(respuestas5_len)
+    aciertos = [
+        respuesta1 == PREGUNTAS[1][1],
+        respuesta2 == PREGUNTAS[2][1],
+        respuesta3 == PREGUNTAS[3][1],
+        respuesta4 == PREGUNTAS[4][1],
+    ]
+    for i in aciertos:
+        if i:
+            calificacion += 20
+    if respuestas5_len == 2:
+        if respuestas5[3] and respuestas5[4]:
+            calificacion += 20
+    if respuestas5_len == 1:
+        if respuestas5[3] or respuestas5[4]:
+            calificacion += 20
+    messagebox.showinfo(
+        title="Calificacion", message=f"Su calificacion es: {calificacion}"
+    )
 
 
 root = tk.Tk()
